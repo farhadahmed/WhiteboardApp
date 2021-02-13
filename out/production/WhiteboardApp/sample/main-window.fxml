@@ -10,17 +10,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Create Classroom" />
-                  <MenuItem mnemonicParsing="false" text="Create Teacher" />
-                  <MenuItem mnemonicParsing="false" text="Create Student" />
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#createClassroom" text="Create Classroom" />
+                  <MenuItem mnemonicParsing="false" onAction="#createTeacher" text="Create Teacher" />
+                  <MenuItem mnemonicParsing="false" onAction="#createStudent" text="Create Student" />
+              <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -37,19 +36,19 @@
       </MenuBar>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="372.0" prefWidth="104.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Students">
+            <Button mnemonicParsing="false" onAction="#getStudents" prefHeight="27.0" prefWidth="102.0" text="Students">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Teachers">
+            <Button mnemonicParsing="false" onAction="#getTeachers" prefHeight="27.0" prefWidth="102.0" text="Teachers">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Classrooms">
+            <Button mnemonicParsing="false" onAction="#getClassrooms" prefHeight="27.0" prefWidth="101.0" text="Classrooms">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -58,7 +57,7 @@
       </VBox>
    </left>
    <center>
-      <ImageView fitHeight="371.0" fitWidth="401.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="371.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@images/WB.png" />
          </image>
