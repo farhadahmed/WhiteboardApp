@@ -49,6 +49,37 @@ public class Controller {
     }
 
     public void showCreateTeacherDialog(ActionEvent actionEvent) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        // initOwner() sets an owner for the dialog we want to create.
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+
+        // FXMLLoader is used to load fxml files.
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("new-teacher-dialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        }
+        catch (IOException e) {
+            System.out.println("IOException: Couldn't load New Student Dialog");
+            e.printStackTrace();
+        }
+
+        // Adding OK and CANCEL buttons to dialog pane
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            NewTeacherDialogController controller = fxmlLoader.getController();
+            controller.createNewTeacher();
+
+            System.out.println("New teacher created!");
+        }
+        else {
+            System.out.println("New teacher cancelled...");
+        }
     }
 
     public void showCreateClassroomDialog(ActionEvent actionEvent) {
