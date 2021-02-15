@@ -19,13 +19,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        Datasource datasource = new Datasource();
-        if (!datasource.open()) {
+        if (!Datasource.datasource.open()) {
             System.out.println("Can't open datasource.");
             return;
         }
-        datasource.createStudent("Samuel", "L.", "Jackson", "jackson@badmf.com", "samljackson", "bossofbadassness");
-
         launch(args);
     }
 }

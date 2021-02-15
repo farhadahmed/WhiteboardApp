@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/*
+This class contains a singleton with methods to retrieve and create students, teachers, and classrooms.
+ */
+
 public class Datasource {
     public static final String DB_NAME = "whiteboardapp.db";
     public static final String DB_PATH = "jdbc:sqlite:/Users/farhadahmed/repos/Projects/WhiteboardApp/" + DB_NAME;
@@ -25,11 +29,35 @@ public class Datasource {
     public static final int INDEX_STUDENT_LOGIN_ID = 6;
     public static final int INDEX_STUDENT_LOGIN_PASSWORD = 7;
 
+    public static final String TABLE_TEACHERS = "teachers";
+    public static final String COLUMN_TEACHER_ID = "_id";
+    public static final String COLUMN_TEACHER_FIRST_NAME = "first_name";
+    public static final String COLUMN_TEACHER_MIDDLE_NAME = "middle_name";
+    public static final String COLUMN_TEACHER_LAST_NAME = "last_name";
+    public static final String COLUMN_TEACHER_EMAIL = "email";
+    public static final String COLUMN_TEACHER_LOGIN_ID = "login_id";
+    public static final String COLUMN_TEACHER_LOGIN_PASSWORD = "login_password";
+    public static final int INDEX_TEACHER_ID = 1;
+    public static final int INDEX_TEACHER_FIRST_NAME = 2;
+    public static final int INDEX_TEACHER_MIDDLE_NAME = 3;
+    public static final int INDEX_TEACHER_LAST_NAME = 4;
+    public static final int INDEX_TEACHER_EMAIL = 5;
+    public static final int INDEX_TEACHER_LOGIN_ID = 6;
+    public static final int INDEX_TEACHER_LOGIN_PASSWORD = 7;
+
     public static final int ORDER_BY_NONE = 1;
     public static final int ORDER_BY_ASC = 2;
     public static final int ORDER_BY_DESC = 3;
 
     private Connection conn;
+
+    private Datasource() {}
+
+    public static Datasource datasource = new Datasource();
+
+    public Datasource getDatasource() {
+        return datasource;
+    }
 
     // Open a connection to the db
     public boolean open() {
@@ -66,6 +94,23 @@ public class Datasource {
                     COLUMN_STUDENT_EMAIL + ", " +
                     COLUMN_STUDENT_LOGIN_ID + ", " +
                     COLUMN_STUDENT_LOGIN_PASSWORD + ") " +
+                    "VALUES('" +firstName+"', '"+middleName+"', '"+lastName+"', '"+email+"', '"+loginId+"', '"+loginPassword+"');");
+        }
+        catch (SQLException e) {
+            System.out.println("ERROR creating artist: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void createTeacher(String firstName, String middleName, String lastName, String email, String loginId, String loginPassword) {
+        try (Statement statement = conn.createStatement()) {
+            statement.execute("INSERT INTO " + TABLE_TEACHERS +
+                    " (" + COLUMN_TEACHER_FIRST_NAME + ", " +
+                    COLUMN_TEACHER_MIDDLE_NAME + ", " +
+                    COLUMN_TEACHER_LAST_NAME + ", " +
+                    COLUMN_TEACHER_EMAIL + ", " +
+                    COLUMN_TEACHER_LOGIN_ID + ", " +
+                    COLUMN_TEACHER_LOGIN_PASSWORD + ") " +
                     "VALUES('" +firstName+"', '"+middleName+"', '"+lastName+"', '"+email+"', '"+loginId+"', '"+loginPassword+"');");
         }
         catch (SQLException e) {
