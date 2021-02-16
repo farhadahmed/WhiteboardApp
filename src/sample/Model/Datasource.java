@@ -45,6 +45,14 @@ public class Datasource {
     public static final int INDEX_TEACHER_LOGIN_ID = 6;
     public static final int INDEX_TEACHER_LOGIN_PASSWORD = 7;
 
+    public static final String TABLE_CLASSROOMS = "classrooms";
+    public static final String COLUMN_CLASSROOM_ID = "_id";
+    public static final String COLUMN_CLASSROOM_NAME = "classroom_name";
+    public static final String COLUMN_CLASSROOM_TEACHER_ID = "teacher_id";
+    public static final int INDEX_CLASSROOM_ID = 1;
+    public static final int INDEX_CLASSROOM_NAME = 2;
+    public static final int INDEX_CLASSROOM_TEACHER_ID = 3;
+
     public static final int ORDER_BY_NONE = 1;
     public static final int ORDER_BY_ASC = 2;
     public static final int ORDER_BY_DESC = 3;
@@ -97,7 +105,7 @@ public class Datasource {
                     "VALUES('" +firstName+"', '"+middleName+"', '"+lastName+"', '"+email+"', '"+loginId+"', '"+loginPassword+"');");
         }
         catch (SQLException e) {
-            System.out.println("ERROR creating artist: " + e.getMessage());
+            System.out.println("ERROR creating student: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -114,7 +122,20 @@ public class Datasource {
                     "VALUES('" +firstName+"', '"+middleName+"', '"+lastName+"', '"+email+"', '"+loginId+"', '"+loginPassword+"');");
         }
         catch (SQLException e) {
-            System.out.println("ERROR creating artist: " + e.getMessage());
+            System.out.println("ERROR creating teacher: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void createClassroom(String classroomName, int teacherId) {
+        try (Statement statement = conn.createStatement()) {
+            statement.execute("INSERT INTO " + TABLE_CLASSROOMS +
+                    " (" + COLUMN_CLASSROOM_NAME + ", " +
+                    COLUMN_CLASSROOM_TEACHER_ID + ") " +
+                    "VALUES('" +classroomName+"', "+teacherId+");");
+        }
+        catch (SQLException e) {
+            System.out.println("ERROR creating classroom: " + e.getMessage());
             e.printStackTrace();
         }
     }

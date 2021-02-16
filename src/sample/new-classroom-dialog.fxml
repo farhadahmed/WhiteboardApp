@@ -11,15 +11,15 @@
 <DialogPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NewClassroomDialogController">
     <content>
         <GridPane hgap="10" vgap="10">
-            <Label text="Name: " GridPane.rowIndex="1" />
-            <TextField fx:id="classroomNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Teacher ID: " GridPane.rowIndex="2" />
-            <TextField fx:id="classroomTeacherIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Create Classroom" textAlignment="CENTER" underline="true" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Label>
+            <Label text="Name: " GridPane.rowIndex="1" />
+            <TextField fx:id="classroomNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Teacher ID: " GridPane.rowIndex="2" />
+            <TextField fx:id="classroomTeacherIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <columnConstraints>
                 <ColumnConstraints />
                 <ColumnConstraints />
